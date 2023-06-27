@@ -47,6 +47,28 @@ local plugins = {
     end,
   },
 
+  -- my installed plugins
+  {"justinmk/vim-sneak"},
+  {"tpope/vim-fugitive"},
+  -- is this really needed (whiout this also .editorconfig works!)
+  { "editorconfig/editorconfig-vim"},
+  {
+    "MunifTanjim/nui.nvim",
+    lazy = false,
+  },
+  {
+    "xeluxee/competitest.nvim",
+    lazy = false,
+    dependencies = {
+      {
+        "MunifTanjim/nui.nvim",
+        config = function()
+          require'custom.plugins.configs.competitest'.setup()
+        end
+      },
+    }
+  },
+
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",
