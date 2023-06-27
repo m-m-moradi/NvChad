@@ -1,4 +1,4 @@
-local overrides = require("custom.plugins.configs.overrides")
+local overrides = require("custom.plugins.options.overrides")
 
 ---@type NvPluginSpec[]
 local plugins = {
@@ -35,8 +35,16 @@ local plugins = {
 
   {
     "nvim-tree/nvim-tree.lua",
-    opts = overrides.nvimtree,
+    -- opts = overrides.nvimtree,
+    opts = require("custom.plugins.options.nvimtree")
   },
+
+  -- @! my override
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = require("custom.plugins.options.gitsigns")
+  },
+  
 
   -- Install a plugin
   {
@@ -47,7 +55,7 @@ local plugins = {
     end,
   },
 
-  -- my installed plugins
+  -- @! my plugins
   {"justinmk/vim-sneak"},
   {"tpope/vim-fugitive"},
   -- is this really needed (whiout this also .editorconfig works!)
