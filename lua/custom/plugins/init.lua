@@ -1,4 +1,4 @@
-local overrides = require("custom.plugins.options.overrides")
+local overrides = require "custom.plugins.options.overrides"
 
 ---@type NvPluginSpec[]
 local plugins = {
@@ -25,7 +25,7 @@ local plugins = {
   -- override plugin configs
   {
     "williamboman/mason.nvim",
-    opts = overrides.mason
+    opts = overrides.mason,
   },
 
   {
@@ -36,15 +36,14 @@ local plugins = {
   {
     "nvim-tree/nvim-tree.lua",
     -- opts = overrides.nvimtree,
-    opts = require("custom.plugins.options.nvimtree")
+    opts = require "custom.plugins.options.nvimtree",
   },
 
   -- @! my override
   {
     "lewis6991/gitsigns.nvim",
-    opts = require("custom.plugins.options.gitsigns")
+    opts = require "custom.plugins.options.gitsigns",
   },
-  
 
   -- Install a plugin
   {
@@ -56,10 +55,12 @@ local plugins = {
   },
 
   -- @! my plugins
-  {"justinmk/vim-sneak"},
-  {"tpope/vim-fugitive"},
+  {
+    "tpope/vim-fugitive",
+    lazy = false,
+  },
   -- is this really needed (whiout this also .editorconfig works!)
-  { "editorconfig/editorconfig-vim"},
+  { "editorconfig/editorconfig-vim" },
   {
     "MunifTanjim/nui.nvim",
     lazy = false,
@@ -71,10 +72,10 @@ local plugins = {
       {
         "MunifTanjim/nui.nvim",
         config = function()
-          require'custom.plugins.configs.competitest'.setup()
-        end
+          require("custom.plugins.configs.competitest").setup()
+        end,
       },
-    }
+    },
   },
 
   -- To make a plugin not be loaded
@@ -82,7 +83,6 @@ local plugins = {
   --   "NvChad/nvim-colorizer.lua",
   --   enabled = false
   -- },
-
 }
 
 return plugins
