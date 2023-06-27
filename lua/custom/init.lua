@@ -9,9 +9,7 @@
 
 -- vscode format i.e json files
 vim.g.vscode_snippets_path = "./snips/vscode/"
-
--- snipmate format 
+-- snipmate format
 vim.g.snipmate_snippets_path = "./snips/snippets/"
-
--- lua format 
+-- lua format
 vim.g.lua_snippets_path = "./snips/luasnippets/"
