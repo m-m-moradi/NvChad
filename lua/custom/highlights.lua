@@ -8,6 +8,7 @@ local M = {}
 M.override = {
   Comment = {
     italic = true,
+    bold = true,
   },
   -- https://flatuicolors.com/palette/us
   NvimTreeGitNew = {fg = "#55efc4"},
