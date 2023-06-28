@@ -1,171 +1,37 @@
----@type MappingsTable
 local M = {}
 
--- other keybinds that are defined in core/mappings
--- gD goto declaration (buf)
--- gd goto definition (buf)
--- gi goto implementation (buf)
--- gr goto references (buf)
--- [d goto prev (diagnostic)
--- ]d goto next (diagnostic)
--- K  LPS hover
--- <leader>D  type_definition (buf)
--- <leader>q  setloclist (diagnostic)
--- <leader>ls signature_help(buf)
--- <leader>ra rename (nvchad.ui)
--- <leader>ca code_action (buf)
--- <leader>f open_float (diagnostic) @@@ different
--- <leader>wa add_workspace_folder (buf)
--- <leader>wr remove_workspace_folder (buf)
--- <leader>wl list_workspace_folders (buf)
 M.general = {
   n = {
     -- copied from core/mappings
-    ["gD"] = {
-      function()
-        vim.lsp.buf.declaration()
-      end,
-      "LSP declaration",
-    },
-
-    ["gd"] = {
-      function()
-        vim.lsp.buf.definition()
-      end,
-      "LSP definition",
-    },
-
-    ["K"] = {
-      function()
-        vim.lsp.buf.hover()
-      end,
-      "LSP hover",
-    },
-
-    ["gi"] = {
-      function()
-        vim.lsp.buf.implementation()
-      end,
-      "LSP implementation",
-    },
-
-    ["<leader>ls"] = {
-      function()
-        vim.lsp.buf.signature_help()
-      end,
-      "LSP signature help",
-    },
-
-    ["<leader>D"] = {
-      function()
-        vim.lsp.buf.type_definition()
-      end,
-      "LSP definition type",
-    },
-
-    ["<leader>ra"] = {
-      function()
-        require("nvchad_ui.renamer").open()
-      end,
-      "LSP rename",
-    },
-
-    ["<leader>ca"] = {
-      function()
-        vim.lsp.buf.code_action()
-      end,
-      "LSP code action",
-    },
-
-    ["gr"] = {
-      function()
-        vim.lsp.buf.references()
-      end,
-      "LSP references",
-    },
-
-    ["<leader>f"] = {
-      function()
-        vim.diagnostic.open_float { border = "rounded" }
-      end,
-      "Floating diagnostic",
-    },
-
-    ["[d"] = {
-      function()
-        vim.diagnostic.goto_prev { float = { border = "rounded" } }
-      end,
-      "Goto prev",
-    },
-
-    ["]d"] = {
-      function()
-        vim.diagnostic.goto_next { float = { border = "rounded" } }
-      end,
-      "Goto next",
-    },
-
-    ["<leader>q"] = {
-      function()
-        vim.diagnostic.setloclist()
-      end,
-      "Diagnostic setloclist",
-    },
-
-    ["<leader>fm"] = {
-      function()
-        vim.lsp.buf.format { async = true }
-      end,
-      "LSP formatting",
-    },
-
-    ["<leader>wa"] = {
-      function()
-        vim.lsp.buf.add_workspace_folder()
-      end,
-      "Add workspace folder",
-    },
-
-    ["<leader>wr"] = {
-      function()
-        vim.lsp.buf.remove_workspace_folder()
-      end,
-      "Remove workspace folder",
-    },
-
-    ["<leader>wl"] = {
-      function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-      end,
-      "List workspace folders",
-    },
+    -- stylua: ignore start
+    ["gD"]         = { function() vim.lsp.buf.declaration() end, "LSP declaration" },
+    ["gd"]         = { function() vim.lsp.buf.definition() end, "LSP definition" },
+    ["K"]          = { function() vim.lsp.buf.hover() end, "LSP hover" },
+    ["gi"]         = { function() vim.lsp.buf.implementation() end, "LSP implementation" },
+    ["<leader>ls"] = { function() vim.lsp.buf.signature_help() end, "LSP signature help" },
+    ["<leader>D"]  = { function() vim.lsp.buf.type_definition() end, "LSP definition type" },
+    ["<leader>ra"] = { function() require("nvchad_ui.renamer").open() end, "LSP rename" },
+    ["<leader>ca"] = { function() vim.lsp.buf.code_action() end, "LSP code action" },
+    ["gr"]         = { function() vim.lsp.buf.references() end, "LSP references" },
+    ["<leader>f"]  = { function() vim.diagnostic.open_float { border = "rounded" } end, "Floating diagnostic" },
+    ["[d"]         = { function() vim.diagnostic.goto_prev { float = { border = "rounded" } } end, "Goto prev" },
+    ["]d"]         = { function() vim.diagnostic.goto_next { float = { border = "rounded" } } end, "Goto next" },
+    ["<leader>q"]  = { function() vim.diagnostic.setloclist() end, "Diagnostic setloclist" },
+    ["<leader>fm"] = { function() vim.lsp.buf.format { async = true } end, "LSP formatting" },
+    ["<leader>wa"] = { function() vim.lsp.buf.add_workspace_folder() end, "Add workspace folder" },
+    ["<leader>wr"] = { function() vim.lsp.buf.remove_workspace_folder() end, "Remove workspace folder" },
+    ["<leader>wl"] = { function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, "List workspace folders" },
     -- my mappings
-    ["<leader>df"] = {
-      function()
-        vim.diagnostic.open_float { border = "rounded" }
-      end,
-      "Floating diagnostic",
-    },
-    ["<leader>ic"] = {
-      function()
-        vim.lsp.buf.incoming_calls()
-      end,
-      "LSP incoming calls",
-    },
-    ["<leader>oc"] = {
-      function()
-        vim.lsp.buf.outgoing_calls()
-      end,
-      "LSP outgoing calls",
-    },
+    ["<leader>df"] = { function() vim.diagnostic.open_float { border = "rounded" } end, "Floating diagnostic" },
+    ["<leader>ic"] = { function() vim.lsp.buf.incoming_calls() end, "LSP incoming calls" },
+    ["<leader>oc"] = { function() vim.lsp.buf.outgoing_calls() end, "LSP outgoing calls" },
+    -- stylua: ignore end
   },
   v = {
-    ["<leader>fm"] = {
-      function()
-        vim.lsp.buf.range_formatting()
-      end,
-      "LSP range formatting",
-    },
+    -- my mappings
+    -- stylua: ignore start
+    ["<leader>fm"] = { function() vim.lsp.buf.range_formatting() end, "LSP range formatting" },
+    -- stylua: ignore end
   },
 }
 
@@ -199,6 +65,7 @@ M.comment = {
   },
   v = {
     ["<C-/>"] = {
+      -- this is similar to what is in core/mapping
       "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
       "toggle comment",
     },
@@ -215,7 +82,7 @@ M.lspconfig = {
 M.nvimtree = {
   n = {
     ["<leader>tg"] = { ":lua require('custom.utils').OpenNvimTree()<CR>", "nvimtree go to file" },
-  }
+  },
 }
 
 return M
