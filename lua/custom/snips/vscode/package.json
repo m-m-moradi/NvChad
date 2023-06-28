@@ -1,10 +1,13 @@
 {
-  "name": "nvim-snippets",
-  "author": "mehdi",
-  "engines": {
-    "vscode": "^1.11.0"
-  },
-  "contributes": {
-    "snippets": []
-  }
+	"name": "nvim-snippets",
+	"contributes": {
+		"snippets": [
+			{
+				"language": [
+					"python"
+				],
+				"path": "./python.json"
+			}
+		]
+	}
 }

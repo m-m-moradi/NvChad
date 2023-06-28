@@ -1,0 +1,18 @@
+{
+  "Python Module Docstring": {
+    "prefix": "pydoc",
+    "body": [
+      "\"\"\"",
+      "Module Description:",
+      "",
+      "[Replace with a brief description of the module.]",
+      "",
+      "Author: ${1:Your Name}",
+      "Date: ${2:Date of creation}",
+      "",
+      "\"\"\"",
+      "$0"
+    ],
+    "description": "Python module-level docstring template"
+  }
+}

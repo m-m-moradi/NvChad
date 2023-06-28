@@ -7,12 +7,12 @@ local lspconfig = require "lspconfig"
 -- note: lua_ls is configured at lua/plugins/configs/lspconfig.lua. other ones must be included in here to use,
 -- this is different than installing via Mason
 
-local servers = { 
-  "html", 
-  "cssls", 
-  "tsserver", 
-  "clangd", 
-  "pyright" 
+local servers = {
+  "html",
+  "cssls",
+  "tsserver",
+  "clangd",
+  "pyright",
 }
 
 for _, lsp in ipairs(servers) do
@@ -22,8 +22,8 @@ for _, lsp in ipairs(servers) do
   }
 end
 
--- Without the loop, you would have to manually set up each LSP 
--- 
+-- Without the loop, you would have to manually set up each LSP
+--
 -- lspconfig.html.setup {
 --   on_attach = on_attach,
 --   capabilities = capabilities,
@@ -36,7 +36,6 @@ end
 
 --
 -- lspconfig.pyright.setup { blabla}
-
 
 -- this setting must be loaded after the deafault configs for ui stuff for lsp.
 -- see this file for more info: https://github.com/NvChad/ui/blob/v2.0/lua/nvchad_ui/lsp.lua
