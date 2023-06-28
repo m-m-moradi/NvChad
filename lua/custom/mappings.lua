@@ -1,18 +1,14 @@
 ---@type MappingsTable
 local M = {}
 
-M.general = {
-  -- n = {
-  --   [";"] = { ":", "enter command mode", opts = { nowait = true } },
-  -- },
-}
+M.general = {}
 
 -- more keybinds!
 M.disabled = {
   n = {
-    ["<leader>h"] = "",
-    ["<leader>f"] = "",
-    ["<leader>uu"] = "",
+    ["<leader>h"] = "", -- new horizantal terminal (nvterm)
+    ["<leader>v"] = "", -- new vertial terminal (nvterm)
+    ["<leader>f"] = "", -- open_float (LSP - diagnostic)
   },
 }
 
@@ -43,75 +39,52 @@ M.comment = {
   },
 }
 
-
+-- other keybinds that are defined in core/mappings
+-- gD goto declaration (buf)
+-- gd goto definition (buf)
+-- gi goto implementation (buf)
+-- gr goto references (buf)
+-- [d goto prev (diagnostic)
+-- ]d goto next (diagnostic)
+-- K  LPS hover
+-- <leader>D  type_definition (buf)
+-- <leader>q  setloclist (diagnostic)
+-- <leader>ls signature_help(buf)
+-- <leader>ra rename (nvchad.ui)
+-- <leader>ca code_action (buf)
+-- <leader>f open_float (diagnostic) @@@ different
+-- <leader>wa add_workspace_folder (buf)
+-- <leader>wr remove_workspace_folder (buf)
+-- <leader>wl list_workspace_folders (buf)
 M.lspconfig = {
-  plugin = true,
   n = {
-    ["gD"] = {function() vim.lsp.buf.declaration() end, "   lsp declaration"},
-    ["gd"] = {function() vim.lsp.buf.definition() end, "   lsp definition"},
-    ["gi"] = {
-      function() vim.lsp.buf.implementation() end,
-      "   lsp implementation"
-    },
-    ["gr"] = {function() vim.lsp.buf.references() end, "   lsp references"},
-    ["K"] = {function() vim.lsp.buf.hover() end, "   lsp hover"},
-    ["[d"] = {function() vim.diagnostic.goto_prev() end, "   goto prev"},
-    ["]d"] = {function() vim.diagnostic.goto_next() end, "   goto_next"},
-    ["<leader>D"] = {
-      function() vim.lsp.buf.type_definition() end,
-      "   lsp definition type"
-    },
-    ["<leader>q"] = {
-      function() vim.diagnostic.setloclist() end,
-      "   diagnostic setloclist"
+    ["<leader>dff"] = {
+      function()
+        vim.diagnostic.open_float { border = "rounded" }
+      end,
+      "Floating diagnostic",
     },
     ["<leader>ic"] = {
-      function() vim.lsp.buf.incoming_calls() end,
-      "   lsp incoming calls"
+      function()
+        vim.lsp.buf.incoming_calls()
+      end,
+      "LSP incoming calls",
     },
     ["<leader>oc"] = {
-      function() vim.lsp.buf.outgoing_calls() end,
-      "   lsp outgoing calls"
+      function()
+        vim.lsp.buf.outgoing_calls()
+      end,
+      "LSP outgoing calls",
     },
-    ["<leader>ls"] = {
-      function() vim.lsp.buf.signature_help() end,
-      "   lsp signature_help"
-    },
-    ["<leader>ra"] = {
-      function() require("nvchad.ui.renamer").open() end,
-      "   lsp rename"
-    },
-    ["<leader>ca"] = {
-      function() vim.lsp.buf.code_action() end,
-      "   lsp code_action"
-    },
-    ["<leader>df"] = {
-      function() vim.diagnostic.open_float() end,
-      "   floating diagnostic"
-    },
-    ["<leader>fm"] = {
-      function() vim.lsp.buf.formatting() end,
-      "   lsp formatting"
-    },
-    ["<leader>wa"] = {
-      function() vim.lsp.buf.add_workspace_folder() end,
-      "   add workspace folder"
-    },
-    ["<leader>wr"] = {
-      function() vim.lsp.buf.remove_workspace_folder() end,
-      "   remove workspace folder"
-    },
-    ["<leader>wl"] = {
-      function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
-      "   list workspace folders"
-    }
   },
   v = {
     ["<leader>fm"] = {
-      function() vim.lsp.buf.range_formatting() end,
-      "   lsp range formatting"
-    }
-  }
+      function()
+        vim.lsp.buf.range_formatting()
+      end,
+      "LSP range formatting",
+    },
+  },
 }
 
 return M
