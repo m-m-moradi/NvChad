@@ -1,5 +1,21 @@
-local on_attach = require("plugins.configs.lspconfig").on_attach
+-- local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
+
+local utils = require "core.utils"
+local better_on_attach = function(client, bufnr)
+  client.server_capabilities.documentFormattingProvider = true -- this changed from false to true because we support filtering in formatting
+  client.server_capabilities.documentRangeFormattingProvider = true -- this changed from false to true because we suport filtering in formatting
+
+  utils.load_mappings("lspconfig", { buffer = bufnr })
+
+  if client.server_capabilities.signatureHelpProvider then
+    require("nvchad_ui.signature").setup(client)
+  end
+
+  if not utils.load_config().ui.lsp_semantic_tokens and client.supports_method "textDocument/semanticTokens" then
+    client.server_capabilities.semanticTokensProvider = nil
+  end
+end
 
 local lspconfig = require "lspconfig"
 
@@ -17,7 +33,7 @@ local servers = {
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
-    on_attach = on_attach,
+    on_attach = better_on_attach,
     capabilities = capabilities,
   }
 end

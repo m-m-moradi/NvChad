@@ -1,3 +1,23 @@
+local lsp_formatters = {
+  -- Add more language servers for formatting here
+}
+
+-- see: https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts
+local filterd_format = function(bufnr)
+  vim.lsp.buf.format {
+    filter = function(client)
+      local client_name = client.name or ""
+      if vim.tbl_contains(lsp_formatters, client_name) then
+        return true
+      else
+        return client_name == "null-ls"
+      end
+    end,
+    bufnr = bufnr,
+    async = true,
+  }
+end
+
 local M = {}
 
 M.general = {
@@ -17,7 +37,7 @@ M.general = {
     ["[d"]         = { function() vim.diagnostic.goto_prev { float = { border = "rounded" } } end, "Goto prev" },
     ["]d"]         = { function() vim.diagnostic.goto_next { float = { border = "rounded" } } end, "Goto next" },
     ["<leader>q"]  = { function() vim.diagnostic.setloclist() end, "Diagnostic setloclist" },
-    ["<leader>fm"] = { function() vim.lsp.buf.format { async = true } end, "LSP formatting" },
+    ["<leader>fm"] = { function() filterd_format() end, "LSP formatting" },
     ["<leader>wa"] = { function() vim.lsp.buf.add_workspace_folder() end, "Add workspace folder" },
     ["<leader>wr"] = { function() vim.lsp.buf.remove_workspace_folder() end, "Remove workspace folder" },
     ["<leader>wl"] = { function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, "List workspace folders" },
@@ -30,7 +50,7 @@ M.general = {
   v = {
     -- my mappings
     -- stylua: ignore start
-    ["<leader>fm"] = { function() vim.lsp.buf.range_formatting() end, "LSP range formatting" },
+    ["<leader>fm"] = { function() filterd_format() end, "LSP range formatting" },
     -- stylua: ignore end
   },
 }
