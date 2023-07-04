@@ -90,10 +90,23 @@ M.general = {
 
 -- more keybinds!
 M.disabled = {
+  i = {
+    -- conflict with tmux-navigator
+    ["<C-h>"] = "",
+    ["<C-l>"] = "",
+    ["<C-j>"] = "",
+    ["<C-k>"] = "",
+  },
+
   n = {
     ["<leader>h"] = "", -- new horizantal terminal (nvterm)
     ["<leader>v"] = "", -- new vertial terminal (nvterm)
     ["<leader>f"] = "", -- open_float (LSP - diagnostic)
+    -- conflict with tmux-navigator
+    ["<C-h>"] = "",
+    ["<C-l>"] = "",
+    ["<C-j>"] = "",
+    ["<C-k>"] = "",
   },
 }
 
@@ -135,6 +148,15 @@ M.lspconfig = {
 M.nvimtree = {
   n = {
     ["<leader>tg"] = { ":lua require('custom.utils').OpenNvimTree()<CR>", "nvimtree go to file" },
+  },
+}
+
+M.slime = {
+  n = {
+    ["<leader>s"] = { "<Plug>SlimeSendCell", "send cell" },
+    -- ["<leader>s"] = { "<Plug>SlimeCellsSendAndGoToNext", "send and go to next cell" },
+    ["<S-j>"] = { "<Plug>SlimeCellsNext", "next cell" },
+    ["<S-k>"] = { "<Plug>SlimeCellsPrev", "prev cell" },
   },
 }
 

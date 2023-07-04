@@ -74,6 +74,22 @@ local plugins = {
       },
     },
   },
+  {
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
+  },
+  -- {
+  --   "jpalardy/vim-slime",
+  --   lazy = false,
+  -- },
+  {
+    "klafyvel/vim-slime-cells",
+    lazy = false,
+    dependencies = {
+      "jpalardy/vim-slime",
+      lazy = false,
+    },
+  },
 
   -- To make a plugin not be loaded
   -- {
