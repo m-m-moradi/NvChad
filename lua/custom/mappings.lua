@@ -109,7 +109,7 @@ M.comment = {
   -- toggle comment in both modes
   -- plugin = true,
   n = {
-    ["<C-/>"] = {
+    ["<C-_>"] = {
       function()
         require("Comment.api").toggle.linewise.current()
       end,
@@ -117,7 +117,7 @@ M.comment = {
     },
   },
   v = {
-    ["<C-/>"] = {
+    ["<C-_>"] = {
       -- this is similar to what is in core/mapping
       "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
       "toggle comment",
