@@ -24,7 +24,7 @@ local sources = {
   -- python
   b.formatting.yapf,
   b.diagnostics.flake8,
-  b.diagnostics.pylint,
+  -- b.diagnostics.pylint, -- too much useless linting (maybe looking for more sane config)
 }
 
 null_ls.setup {
