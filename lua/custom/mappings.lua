@@ -163,11 +163,13 @@ M.flash = {
   n = {
     ["s"] = {
       function()
-        require("flash").jump { search = {
-          mode = function(str)
-            return "\\<" .. str
-          end,
-        } }
+        require("flash").jump {
+          search = {
+            mode = function(str)
+              return "\\<" .. str
+            end,
+          },
+        }
       end,
       "flash jump",
     },
@@ -175,11 +177,13 @@ M.flash = {
   x = {
     ["s"] = {
       function()
-        require("flash").jump { search = {
-          mode = function(str)
-            return "\\<" .. str
-          end,
-        } }
+        require("flash").jump {
+          search = {
+            mode = function(str)
+              return "\\<" .. str
+            end,
+          },
+        }
       end,
       "flash jump",
     },
@@ -187,11 +191,13 @@ M.flash = {
   o = {
     ["s"] = {
       function()
-        require("flash").jump { search = {
-          mode = function(str)
-            return "\\<" .. str
-          end,
-        } }
+        require("flash").jump {
+          search = {
+            mode = function(str)
+              return "\\<" .. str
+            end,
+          },
+        }
       end,
       "flash jump",
     },
