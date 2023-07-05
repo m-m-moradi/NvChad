@@ -14,10 +14,9 @@ vim.g.snipmate_snippets_path = vim.fn.stdpath "config" .. "/lua/custom/snips/sni
 -- lua format
 vim.g.lua_snippets_path = vim.fn.stdpath "config" .. "/lua/custom/snips/luasnippets"
 
-
 local function get_git_info()
-  local author = vim.fn.trim(vim.fn.system('git config user.name'))
-  local email = vim.fn.trim(vim.fn.system('git config user.email'))
+  local author = vim.fn.trim(vim.fn.system "git config user.name")
+  local email = vim.fn.trim(vim.fn.system "git config user.email")
   -- local github = vim.fn.trim(vim.fn.system('git config --get remote.origin.url'))
 
   vim.g.snips_author = author
@@ -28,12 +27,12 @@ end
 -- Call the function to populate the variables
 get_git_info()
 
-
 -- [[ Plugin: slime ]] --
 vim.g.slime_target = "tmux"
--- vim.g.slime_python_ipython = 1
 vim.g.slime_bracketed_paste = 1
+-- vim.g.slime_cell_delimiter = "^\\s*##"
 vim.g.slime_cell_delimiter = "# %%"
-vim.g.slime_default_config = {socket_name = "default", target_pane= "{last}"}
+vim.g.slime_default_config = { socket_name = "default", target_pane = "{last}" }
+vim.g.slime_cells_highlight_from = "SlimeCell"
 vim.g.slime_dont_ask_default = 1
-
+vim.g.slime_no_mappings = 1

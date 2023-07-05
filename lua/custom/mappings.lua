@@ -144,7 +144,6 @@ M.lspconfig = {
   v = {},
 }
 
--- vim.api.nvim_set_keymap('n', '<leader>e', ':lua OpenNvimTree()<CR>', {noremap = true, silent = true})
 M.nvimtree = {
   n = {
     ["<leader>tg"] = { ":lua require('custom.utils').OpenNvimTree()<CR>", "nvimtree go to file" },
@@ -155,8 +154,47 @@ M.slime = {
   n = {
     ["<leader>s"] = { "<Plug>SlimeSendCell", "send cell" },
     -- ["<leader>s"] = { "<Plug>SlimeCellsSendAndGoToNext", "send and go to next cell" },
-    ["<S-j>"] = { "<Plug>SlimeCellsNext", "next cell" },
-    ["<S-k>"] = { "<Plug>SlimeCellsPrev", "prev cell" },
+    ["<M-j>"] = { "<Plug>SlimeCellsNext", "next cell" },
+    ["<M-k>"] = { "<Plug>SlimeCellsPrev", "prev cell" },
+  },
+}
+
+M.flash = {
+  n = {
+    ["s"] = {
+      function()
+        require("flash").jump { search = {
+          mode = function(str)
+            return "\\<" .. str
+          end,
+        } }
+      end,
+      "flash jump",
+    },
+  },
+  x = {
+    ["s"] = {
+      function()
+        require("flash").jump { search = {
+          mode = function(str)
+            return "\\<" .. str
+          end,
+        } }
+      end,
+      "flash jump",
+    },
+  },
+  o = {
+    ["s"] = {
+      function()
+        require("flash").jump { search = {
+          mode = function(str)
+            return "\\<" .. str
+          end,
+        } }
+      end,
+      "flash jump",
+    },
   },
 }
 

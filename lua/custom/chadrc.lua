@@ -19,4 +19,9 @@ M.plugins = "custom.plugins"
 -- check core.mappings for table structure
 M.mappings = require "custom.mappings"
 
+-- https://neovim.io/doc/user/api.html#nvim_set_keymap()
+-- https://stackoverflow.com/questions/10956261/how-can-i-remap-the-vim-record-macro-key-from-q-to-q
+vim.api.nvim_set_keymap('', '<Leader>q', 'q', { noremap = true })
+vim.api.nvim_set_keymap('', 'q', '<Nop>', { noremap = true })
+
 return M

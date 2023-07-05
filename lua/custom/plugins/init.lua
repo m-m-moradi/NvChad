@@ -91,11 +91,17 @@ local plugins = {
     },
   },
 
-  -- To make a plugin not be loaded
-  -- {
-  --   "NvChad/nvim-colorizer.lua",
-  --   enabled = false
-  -- },
+  {
+    "NvChad/nvim-colorizer.lua",
+  },
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {},
+    config = function()
+      require("custom.plugins.configs.flash").setup()
+    end,
+  },
 }
 
 return plugins
