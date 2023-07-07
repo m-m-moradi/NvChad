@@ -79,6 +79,7 @@ M.general = {
     ["<leader>es"] = { function() edit_snippets() end , "edit snippet" },
     ["<leader>sp"] = { ":lua print(vim.fn.bufname())<CR>", "show path" },
     -- stylua: ignore end
+    ["<leader>X"] = { ":%bd|e#<CR>", "close all buffers excpet this one" },
   },
   v = {
     -- my mappings
