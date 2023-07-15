@@ -38,6 +38,15 @@ local plugins = {
 
   -- @! my override
   {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    lazy = false,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      -- opts = require "custom.plugins.options.treesitter",
+    },
+  },
+
+  {
     "lewis6991/gitsigns.nvim",
     opts = require "custom.plugins.options.gitsigns",
   },
@@ -102,6 +111,15 @@ local plugins = {
       require("custom.plugins.configs.flash").setup()
     end,
   },
+  {
+    "mfussenegger/nvim-dap",
+    lazy=false,
+  },
+  {
+    "mfussenegger/nvim-dap-python",
+    lazy=false,
+    
+  }
 }
 
 return plugins

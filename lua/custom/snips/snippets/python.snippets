@@ -562,3 +562,10 @@ snippet	stopwatch
           return time_func
   
       return outer_func
+
+
+snippet	readarr 
+  def read_array():
+      n = int(input())
+      array = [int(number) for number in input().split()]
+      return n, array
