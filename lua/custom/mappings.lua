@@ -1,53 +1,4 @@
-local lsp_formatters = {
-  -- Add more language servers for formatting here
-}
-
--- see: https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts
-local filterd_format = function(bufnr)
-  vim.lsp.buf.format {
-    filter = function(client)
-      local client_name = client.name or ""
-      if vim.tbl_contains(lsp_formatters, client_name) then
-        return true
-      else
-        return client_name == "null-ls"
-      end
-    end,
-    bufnr = bufnr,
-    async = true,
-  }
-end
-
-local edit_snippets = function()
-  require("luasnip.loaders").edit_snippet_files {
-    edit = function(file)
-      vim.cmd("vsp " .. file)
-    end,
-    extend = function(ft, paths)
-      -- see: https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#edit_snippets
-      -- label (appear in selection prompt), path that will passed to edit()
-      local snippets_file = string.format("%s/%s.snippets", vim.g.snipmate_snippets_path, ft)
-      local json_file = string.format("%s/%s.json", vim.g.vscode_snippets_path, ft)
-      local lua_file = string.format("%s/%s.lua", vim.g.lua_snippets_path, ft)
-      local new_paths = {}
-
-      local files = {
-        { "$CONFIG/" .. ft .. ".snippets", snippets_file },
-        { "$CONFIG/" .. ft .. ".json", json_file },
-        { "$CONFIG/" .. ft .. ".lua", lua_file },
-      }
-
-      for _, file in ipairs(files) do
-        local label, path = file[1], file[2]
-        if not vim.tbl_contains(paths, path) then
-          table.insert(new_paths, { label, path })
-        end
-      end
-
-      return new_paths
-    end,
-  }
-end
+local utils = require "custom.utils"
 
 local M = {}
 
@@ -68,7 +19,7 @@ M.general = {
     ["[d"]         = { function() vim.diagnostic.goto_prev { float = { border = "rounded" } } end, "Goto prev" },
     ["]d"]         = { function() vim.diagnostic.goto_next { float = { border = "rounded" } } end, "Goto next" },
     ["<leader>q"]  = { function() vim.diagnostic.setloclist() end, "Diagnostic setloclist" },
-    ["<leader>fm"] = { function() filterd_format() end, "LSP formatting" },
+    ["<leader>fm"] = { function() utils.filterd_format() end, "LSP formatting" },
     ["<leader>wa"] = { function() vim.lsp.buf.add_workspace_folder() end, "Add workspace folder" },
     ["<leader>wr"] = { function() vim.lsp.buf.remove_workspace_folder() end, "Remove workspace folder" },
     ["<leader>wl"] = { function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, "List workspace folders" },
@@ -76,15 +27,16 @@ M.general = {
     ["<leader>df"] = { function() vim.diagnostic.open_float { border = "rounded" } end, "Floating diagnostic" },
     ["<leader>ic"] = { function() vim.lsp.buf.incoming_calls() end, "LSP incoming calls" },
     ["<leader>oc"] = { function() vim.lsp.buf.outgoing_calls() end, "LSP outgoing calls" },
-    ["<leader>es"] = { function() edit_snippets() end , "edit snippet" },
+    ["<leader>es"] = { function() utils.edit_snippets() end , "edit snippet" },
     ["<leader>sp"] = { ":lua print(vim.fn.bufname())<CR>", "show path" },
+    ["<leader>cp"] = { function() utils.copy_buffer_path() end, "show path" ,opts = { noremap = true, silent = true }},
     -- stylua: ignore end
     ["<leader>X"] = { ":%bd|e#<CR>", "close all buffers excpet this one" },
   },
   v = {
     -- my mappings
     -- stylua: ignore start
-    ["<leader>fm"] = { function() filterd_format() end, "LSP range formatting" },
+    ["<leader>fm"] = { function() utils.filterd_format() end, "LSP range formatting" },
     -- stylua: ignore end
   },
 }
