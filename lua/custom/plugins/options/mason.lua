@@ -5,9 +5,9 @@ return {
     "stylua",
 
     -- web dev stuff
+    "typescript-language-server",
     "css-lsp",
     "html-lsp",
-    "typescript-language-server",
     "prettier",
 
     -- c stuff

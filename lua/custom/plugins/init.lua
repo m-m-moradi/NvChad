@@ -113,13 +113,18 @@ local plugins = {
   },
   {
     "mfussenegger/nvim-dap",
-    lazy=false,
+    lazy = false,
   },
   {
     "mfussenegger/nvim-dap-python",
-    lazy=false,
-    
-  }
+    lazy = false,
+  },
+  {
+    -- change it with this -> https://github.com/stevearc/aerial.nvim
+    "simrat39/symbols-outline.nvim",
+    opts = require("custom.plugins.options.outline"),
+    lazy = false,
+  },
 }
 
 return plugins

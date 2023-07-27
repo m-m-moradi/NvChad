@@ -36,3 +36,12 @@ vim.g.slime_default_config = { socket_name = "default", target_pane = "{last}" }
 vim.g.slime_cells_highlight_from = "SlimeCell"
 vim.g.slime_dont_ask_default = 1
 vim.g.slime_no_mappings = 1
+
+
+
+-- vim.cmd([[
+--   augroup markdown_highlight
+--     autocmd!
+--     autocmd FileType markdown highlight MarkdownList ctermbg=red guibg=red if getline('.') ==# '^\\s*! '
+--   augroup END
+-- ]])

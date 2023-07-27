@@ -24,4 +24,13 @@ M.mappings = require "custom.mappings"
 vim.api.nvim_set_keymap('', '<Leader>q', 'q', { noremap = true })
 vim.api.nvim_set_keymap('', 'q', '<Nop>', { noremap = true })
 
+-- see this: https://superuser.com/questions/271023/can-i-disable-continuation-of-comments-to-the-next-line-in-vim
+-- https://vonheikemen.github.io/devlog/tools/configuring-neovim-using-lua/
+-- https://stackoverflow.com/questions/16030639/vim-formatoptions-or/23326474#23326474
+
+-- to know who is overriding the formation options (if this line be in init.lua then the ftplugin would override it)
+-- :5verbose set fo?
+-- :5verbose setl fo?
+vim.opt.formatoptions:remove { "c", "r", "o" }
+
 return M
